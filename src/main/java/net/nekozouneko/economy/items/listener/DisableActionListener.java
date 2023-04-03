@@ -52,12 +52,10 @@ public final class DisableActionListener implements Listener {
         Bukkit.broadcastMessage(Arrays.toString(e.getInventory().getContents()));
 
         boolean isLimited = false;
-        ItemStack limited = null;
         for (ItemStack item : e.getInventory().getContents()) {
             isLimited = NSEconomyItems.isEconomyItem(item, NSEItemType.KEEP_INVENTORY_AMULET);
 
             if (isLimited) {
-                limited = item;
                 break;
             }
         }
