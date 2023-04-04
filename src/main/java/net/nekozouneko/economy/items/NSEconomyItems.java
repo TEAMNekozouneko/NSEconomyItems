@@ -69,6 +69,7 @@ public final class NSEconomyItems extends JavaPlugin {
 
             try {
                 addon.loadClasses("net.nekozouneko.economy.items", "expression");
+                addon.loadClasses("net.nekozouneko.economy.items", "condition");
             } catch (IOException e) {
                 e.printStackTrace();
             }
