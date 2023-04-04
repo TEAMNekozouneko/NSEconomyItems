@@ -4,6 +4,7 @@ import ch.njol.skript.Skript;
 import ch.njol.skript.SkriptAddon;
 import com.google.common.base.Preconditions;
 import net.nekozouneko.economy.items.listener.DisableActionListener;
+import net.nekozouneko.economy.items.listener.PlayerDeathListener;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -27,7 +28,7 @@ public final class NSEconomyItems extends JavaPlugin {
         meta.setLore(Arrays.asList(
                 "§f所持していると1回だけ死んだ時の被害がなくなるとか...?",
                 " ",
-                "§d効果：",
+                "§5効果：",
                 "§9死んだ際、1回だけアイテム, 経験値と所持金を保持",
                 "§8§o(限定アイテム)"
         ));
@@ -74,5 +75,6 @@ public final class NSEconomyItems extends JavaPlugin {
         }
 
         getServer().getPluginManager().registerEvents(new DisableActionListener(), this);
+        getServer().getPluginManager().registerEvents(new PlayerDeathListener(), this);
     }
 }
