@@ -2,15 +2,13 @@ package net.nekozouneko.economy.items.listener;
 
 import net.nekozouneko.economy.items.NSEItemType;
 import net.nekozouneko.economy.items.NSEconomyItems;
-import org.bukkit.Bukkit;
+
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.inventory.ItemStack;
-
-import java.util.Arrays;
 
 /**
  * 限定アイテムで指定のアクションをさせないようにするリスナー
@@ -22,6 +20,7 @@ public final class DisableActionListener implements Listener {
         boolean isLimited = false;
         ItemStack limited = null;
         for (ItemStack item : e.getInventory().getMatrix()) {
+            if (item == null) continue;
             isLimited = NSEconomyItems.isEconomyItem(item, NSEItemType.KEEP_INVENTORY_AMULET);
 
             if (isLimited) {
@@ -48,11 +47,9 @@ public final class DisableActionListener implements Listener {
 
     @EventHandler
     public void onPrepareAnvil(PrepareAnvilEvent e) {
-        Bukkit.broadcastMessage(e.getInventory().getSize() + " is anvil inv size");
-        Bukkit.broadcastMessage(Arrays.toString(e.getInventory().getContents()));
-
         boolean isLimited = false;
         for (ItemStack item : e.getInventory().getContents()) {
+            if (item == null) continue;
             isLimited = NSEconomyItems.isEconomyItem(item, NSEItemType.KEEP_INVENTORY_AMULET);
 
             if (isLimited) {
