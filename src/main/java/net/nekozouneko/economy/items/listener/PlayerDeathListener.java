@@ -12,10 +12,14 @@ public class PlayerDeathListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGH)
     public void onDeath(PlayerDeathEvent e) {
-        for (ItemStack item : e.getEntity().getInventory().getContents()) {
+        if (e.getKeepInventory()) return;
+
+        for (ItemStack item : e.getDrops()) {
+            if (item == null) continue;
             if (NSEconomyItems.isEconomyItem(item, NSEItemType.KEEP_INVENTORY_AMULET)) {
                 e.getEntity().getInventory().remove(NSEconomyItems.keepInventoryAmulet());
                 e.setKeepInventory(true);
+                e.setKeepLevel(true);
                 e.getEntity().sendMessage("§dお守りが被害を抑えてくれたが、壊れてしまった！");
             }
         }
