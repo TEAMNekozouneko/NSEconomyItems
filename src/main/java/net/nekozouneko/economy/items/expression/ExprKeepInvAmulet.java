@@ -19,7 +19,7 @@ public final class ExprKeepInvAmulet extends SimpleExpression<ItemStack> {
 
     static {
         Skript.registerExpression(ExprKeepInvAmulet.class, ItemStack.class, ExpressionType.SIMPLE,
-                "[the] economy items of (keep inventory|keepinv) amulet"
+                "[the] eco[nomy] item[s] of (keep inventory|keepinv) amulet"
         );
     }
 
